@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>chat whatsapp</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -21,12 +21,26 @@
 	</style>
 </head>
 <body>
-	
 	<div id="bienvenida" class="well">
 		<h3>por favor ingresa tu nombre, para entrar al chat</h3>
-		<input type="text" id="nombre" class="form-control" name="">
+		<input type="text" id="nombre" class="form-control" >
 		<button onclick="guardarNombre()">Entrar</button>
+		<div
+		  class="fb-like"
+		  data-share="true"
+		  data-width="450"
+		  data-show-faces="true">
+		</div>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="contactos">
+					<ul id="lista_contactos"></ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				
 
 	<div id="chat" class="well">
 	    <h1>YOU MADE IT!</h1>
@@ -36,14 +50,52 @@
 	    <button onclick="limpiarmensaje()">Limpar Mensaje</button>
 	    <ul id="lista_mensajes" class="list-group"></ul>
 	</div>
+			</div>
+		</div>
+	</div>
+	
     <script>
+	    window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '1558319541128773',
+	      xfbml      : true,
+	      version    : 'v2.6'
+	    });
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	    	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '1558319541128773',
+	      xfbml      : true,
+	      version    : 'v2.6'
+	    });
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+
+
+
+
     	var socket=io('/');
     	var nombre;
 
     	function guardarNombre()
     	{
     		nombre =$('#nombre').val();
-    		$('bienvenida').hide();
+    		$('#bienvenida').hide();
     		$('#chat').show();
     	}
     	
