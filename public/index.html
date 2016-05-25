@@ -9,8 +9,9 @@
 	<style>
 		#bienvenida
 		{
-			border: 1px solid #CCC;
 			margin: 10px;
+			background-color: rgba(0,0,0,0.1);
+			border:1px solid rgba(0,0,0,0.1);
 		}
 		#chat
 		{
@@ -30,14 +31,19 @@
 		}
 		.fondo {
 			background: url("http://s33.postimg.org/69pwtjsu7/logo.png");
-			background-position: contain;
 			background-repeat: no-repeat;
 		}
 		.porte {
 			width: 30%;
-			background:#2AD43E;
 			color:#fff;
-			
+		}
+		.gris {
+			background-color:#eeeded;
+		}
+		.foto {
+			width:23%;
+			height:60px;
+			border-radius: 100%;
 		}
 	</style>
 </head>
@@ -51,6 +57,7 @@
 		</div>
 	
 	<div id="bienvenida" class="well porte">
+		<div id="fbStatus"></div>
 		<h3>por favor ingresa tu nombre, para entrar al chat</h3>
 		<input type="text" id="nombre" class="form-control" >
 		<button onclick="guardarNombre()" style="color:#000;">Entrar</button>
@@ -61,7 +68,14 @@
 		  data-show-faces="true">
 		</div>
 	</div>
-	<div class="container" id="chat">
+	<div id="chat" class="container">
+		<div class="row gris">
+			<div class="col-md-3">
+				<img class="foto" src="http://s33.postimg.org/3q5hooqfz/nuvdu.jpg">
+				<span class="glyphicon glyphicon-option-vertical"></span>
+			</div>
+			<div class="col-md-9"></div>
+		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="contactos well">
@@ -136,6 +150,7 @@
     		nombre =$('#nombre').val();
     		$('#tittle').hide();
     		$('#bienvenida').hide();
+    		$('#facebook-login-button').hide();
     		$('#chat').show();
     	}
     	
