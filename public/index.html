@@ -3,7 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>chat whatsapp</title>
+	<script src="jquery.min.js"> </script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="chatSocketAchex.css">
+	<script src="jquery.min.js"> </script>
+    <script src="chatSocketAchex.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 	<style>
@@ -13,7 +17,7 @@
 			background-color: rgba(0,0,0,0.1);
 			border:1px solid rgba(0,0,0,0.1);
 		}
-		#chat
+		#chatt
 		{
 			margin: 10px;
 			border: 1px solid #CCC;
@@ -33,6 +37,9 @@
 			background: url("http://s33.postimg.org/69pwtjsu7/logo.png");
 			background-repeat: no-repeat;
 		}
+		.fondo-blanco{ 
+			background-color: #fff;	
+		}
 		.porte {
 			width: 30%;
 			color:#fff;
@@ -41,9 +48,34 @@
 			background-color:#eeeded;
 		}
 		.foto {
-			width:23%;
-			height:60px;
+			width:18%;
+			height:58px;
 			border-radius: 100%;
+		}
+		.logo-lab{
+			border-radius: 100%;
+			width: 8%;
+			height: 55px;
+			margin-top: 15px;
+		}
+		.icono {
+			font-size: 20px;
+			float:right;
+			margin-top:10px;
+		}
+		.espacio{
+			margin-right:20px;
+		}
+		.inline {
+			float:left;
+		}
+		.lab-grupo {
+			margin: 5px 20px;
+		}
+		.border {
+			border-right:1px solid #c8c8c8;
+			padding:15px 8px;
+			height:auto;
 		}
 	</style>
 </head>
@@ -68,21 +100,31 @@
 		  data-show-faces="true">
 		</div>
 	</div>
-	<div id="chat" class="container">
+	<div id="chatt" class="container">
 		<div class="row gris">
-			<div class="col-md-3">
+			<div class="col-md-4 border">
 				<img class="foto" src="http://s33.postimg.org/3q5hooqfz/nuvdu.jpg">
-				<span class="glyphicon glyphicon-option-vertical"></span>
+				<span class="glyphicon glyphicon-option-vertical icono"></span>
+				<span class="glyphicon glyphicon-comment icono espacio"></span>
 			</div>
-			<div class="col-md-9"></div>
+			<div class="col-md-8">
+				<img class="logo-lab inline" src="http://s33.postimg.org/ua8d152y7/logocodeacademy.png">
+				<div class="inline lab-grupo">
+					<h4>Laboratoria Perú</h4>
+					<p>Ana Maria, Aldo, Gian, Mariana, Papu, Tú</p>
+				</div>
+				<div>
+					<i class="class="glyphicon glyphicon-paperclip""></i>
+				</div>
+			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-3">
+		<div class="row fondo-blanco">
+			<div class="col-md-4">
 				<div class="contactos well">
 					<ul></ul>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-8">
 				<div class="well">
 				    <h1>YOU MADE IT!</h1>
 				    <p>GO ON!</p>
@@ -105,10 +147,7 @@
   		ga('create', 'UA-78144574-1', 'auto');
 		 ga('send', 'pageview');
 
-    
-    
-    
-	    window.fbAsyncInit = function() {
+        window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '1558319541128773',
 	      xfbml      : true,
@@ -151,11 +190,11 @@
     		$('#tittle').hide();
     		$('#bienvenida').hide();
     		$('#facebook-login-button').hide();
-    		$('#chat').show();
+    		$('#chatt').show();
     	}
     	
     	function enviarmensaje() {
-    		socket.emit('chat', "<span class='label label-danger'>" +  nombre + "</span> : " + $('#mensaje').val()  );
+    		socket.emit('chatt', "<span class='label label-danger'>" +  nombre + "</span> : " + $('#mensaje').val()  );
 			$('#mensaje').val('');
 			$('#mensaje').focus();
     	}
